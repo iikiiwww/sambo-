@@ -1,17 +1,17 @@
 :root{
-    --bg:#0b1020;
+    --bg:#060d1a;
     --card:#0f1724;
     --accent:#00d1ff;
     --muted:#94a3b8;
-    --glass: rgba(255,255,255,0.04);
+    --glass:rgba(255,255,255,0.05);
 }
 
 *{box-sizing:border-box}
 
 body{
     margin:0;
-    font-family:Inter,Arial;
-    background:#060d1a;
+    font-family:Inter,Arial, sans-serif;
+    background:var(--bg);
     color:#e6eef8;
 }
 
@@ -31,21 +31,20 @@ body{
     justify-content:space-between;
     align-items:center;
 }
-
 .brand{
     display:flex;
     gap:12px;
     align-items:center;
 }
 .logo{
-    width:48px;
-    height:48px;
+    width:50px;
+    height:50px;
     border-radius:12px;
     background:linear-gradient(90deg,var(--accent),#6b6bff);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:26px;
 }
 .sub{
     margin:0;
@@ -80,7 +79,7 @@ body{
     margin-bottom:20px;
 }
 
-/* PRODUCTS */
+/* PRODUK */
 .section-title{
     margin:18px 0 10px;
     font-size:20px;
@@ -123,7 +122,7 @@ body{
     gap:10px;
 }
 .crate-card{
-    background:rgba(255,255,255,0.03);
+    background:rgba(255,255,255,0.04);
     padding:12px;
     border-radius:10px;
     display:flex;
@@ -151,6 +150,15 @@ body{
     display:flex;
     flex-direction:column;
 }
+.cart-header{
+    display:flex;
+    justify-content:space-between;
+}
+.cart-items{
+    flex:1;
+    overflow:auto;
+    margin-top:10px;
+}
 .cart-item{
     background:rgba(255,255,255,0.05);
     padding:12px;
@@ -158,6 +166,10 @@ body{
     margin-bottom:10px;
     display:flex;
     justify-content:space-between;
+}
+.qty-controls{
+    display:flex;
+    gap:6px;
 }
 .qty-controls button{
     background:#0d1a33;
@@ -175,6 +187,16 @@ body{
 }
 
 /* MOBILE */
-@media(max-width:700px){
-    .cart-panel{width:100%}
+@media(max-width:600px){
+    .header-inner{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
+    }
+    .brand{
+        flex-direction:column;
+    }
+    .cart-panel{
+        width:100%;
+    }
 }
