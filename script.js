@@ -1,180 +1,93 @@
-:root{
-    --bg:#0b1020;
-    --card:#0f1724;
-    --accent:#00d1ff;
-    --muted:#94a3b8;
-    --glass: rgba(255,255,255,0.04);
+const PRODUCTS = [
+    { id:1, name:"FROZEN KRAMPUS", price:103568 },
+    { id:2, name:"JETSKI FROZEN", price:56568 },
+    { id:3, name:"VIP", price:48398 },
+    { id:4, name:"MUTATION", price:34090 },
+    { id:5, name:"ADV LUCK", price:58590 },
+    { id:6, name:"EXTRA LUCK", price:27990 },
+    { id:7, name:"2X XP", price:23890 },
+    { id:8, name:"PERAHU MELAYANG MINI", price:23950 },
+    { id:9, name:"SELL ANYWHERE", price:35130 },
+    { id:10, name:"SMALL LUCK", price:8100 },
+    { id:11, name:"HYPER BOAT", price:110898 },
+
+    { id:12, name:"LUXURY CRATE", price:12098 },
+    { id:13, name:"MEMESONA CRATE", price:12098 },
+    { id:14, name:"LAUTAN CRATE", price:10078 },
+    { id:15, name:"ELDERWEID CRATE", price:12098 },
+    { id:16, name:"CHRISTMAS CRATE", price:28098 },
+];
+
+const grid = document.getElementById("product-grid");
+grid.innerHTML = PRODUCTS.slice(0,11).map(p=>`
+<div class="card">
+    <div class="prod-title">
+        <span>${p.name}</span>
+        <span class="prod-price">Rp ${p.price.toLocaleString("id-ID")}</span>
+    </div>
+    <button class="btn-add" data-id="${p.id}">Tambah</button>
+</div>
+`).join("");
+
+document.querySelectorAll(".crate-card").forEach((c,i)=>{
+    const p = PRODUCTS[11+i];
+    if(!p) return;
+    c.innerHTML = `
+        <strong>${p.name}</strong>
+        <span>Rp ${p.price.toLocaleString("id-ID")}</span>
+        <button class="btn-add" data-id="${p.id}">Tambah</button>
+    `;
+});
+
+let cart = {};
+const cartModal = document.getElementById("cart-modal");
+const cartItems = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+
+function updateCart(){
+    let total = 0;
+    cartItems.innerHTML = Object.values(cart).map(i=>{
+        total += i.qty * i.price;
+        return `
+        <div class="cart-item">
+            <span>${i.name}<br><small>${i.qty} × Rp ${i.price.toLocaleString("id-ID")}</small></span>
+            <div class="qty-controls">
+                <button data-op="dec" data-id="${i.id}">-</button>
+                <button data-op="inc" data-id="${i.id}">+</button>
+            </div>
+        </div>`;
+    }).join("");
+    cartTotal.textContent = "Rp " + total.toLocaleString("id-ID");
 }
 
-*{box-sizing:border-box}
+document.body.addEventListener("click",e=>{
+    if(e.target.classList.contains("btn-add")){
+        const id = e.target.dataset.id;
+        const p = PRODUCTS.find(x=>x.id==id);
+        if(!cart[id]) cart[id] = {...p, qty:0};
+        cart[id].qty++;
+        updateCart();
+    }
 
-body{
-    margin:0;
-    font-family:Inter,Arial;
-    background:#060d1a;
-    color:#e6eef8;
-}
+    if(e.target.id==="open-cart") cartModal.setAttribute("aria-hidden","false");
+    if(e.target.id==="close-cart") cartModal.setAttribute("aria-hidden","true");
 
-.container{
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
-}
+    if(e.target.dataset.op){
+        const id = e.target.dataset.id;
+        if(e.target.dataset.op==="inc") cart[id].qty++;
+        if(e.target.dataset.op==="dec"){
+            cart[id].qty--;
+            if(cart[id].qty<=0) delete cart[id];
+        }
+        updateCart();
+    }
 
-/* HEADER */
-.header{
-    background:#0c1326;
-    border-bottom:1px solid var(--glass);
-}
-.header-inner{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.brand{
-    display:flex;
-    gap:12px;
-    align-items:center;
-}
-.logo{
-    width:48px;
-    height:48px;
-    border-radius:12px;
-    background:linear-gradient(90deg,var(--accent),#6b6bff);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:24px;
-}
-.sub{
-    margin:0;
-    font-size:13px;
-    color:var(--muted);
-}
-.wa-link{
-    color:var(--accent);
-    text-decoration:none;
-    font-weight:600;
-}
-
-/* BUTTON */
-.btn{
-    background:var(--accent);
-    border:none;
-    padding:10px 14px;
-    border-radius:10px;
-    font-weight:600;
-    cursor:pointer;
-}
-.btn.small{
-    padding:6px 10px;
-    font-size:13px;
-}
-
-/* HERO */
-.hero{
-    background:linear-gradient(90deg,rgba(0,209,255,0.08),transparent);
-    padding:28px;
-    border-radius:14px;
-    margin-bottom:20px;
-}
-
-/* PRODUCTS */
-.section-title{
-    margin:18px 0 10px;
-    font-size:20px;
-}
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px;
-}
-.card{
-    background:var(--card);
-    padding:16px;
-    border-radius:12px;
-    border:1px solid var(--glass);
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-.prod-title{
-    display:flex;
-    justify-content:space-between;
-    font-weight:600;
-}
-.prod-price{
-    color:var(--accent);
-}
-.btn-add{
-    background:var(--accent);
-    border:none;
-    padding:8px;
-    border-radius:10px;
-    font-weight:600;
-    cursor:pointer;
-}
-
-/* CRATE */
-.crate-grid{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-.crate-card{
-    background:rgba(255,255,255,0.03);
-    padding:12px;
-    border-radius:10px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    min-width:210px;
-}
-
-/* CART */
-.cart-modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,0.6);
-    display:none;
-    justify-content:flex-end;
-}
-.cart-modal[aria-hidden="false"]{
-    display:flex;
-}
-.cart-panel{
-    width:360px;
-    background:#071021;
-    height:100%;
-    padding:18px;
-    display:flex;
-    flex-direction:column;
-}
-.cart-item{
-    background:rgba(255,255,255,0.05);
-    padding:12px;
-    border-radius:8px;
-    margin-bottom:10px;
-    display:flex;
-    justify-content:space-between;
-}
-.qty-controls button{
-    background:#0d1a33;
-    color:white;
-    border:none;
-    padding:4px 8px;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-.site-footer{
-    text-align:center;
-    color:var(--muted);
-    padding:20px 0;
-}
-
-/* MOBILE */
-@media(max-width:700px){
-    .cart-panel{width:100%}
-}
+    if(e.target.id==="checkout"){
+        let msg="PESANAN BARU%0A-----------------%0A";
+        Object.values(cart).forEach(i=>{
+            msg+=`${i.name} x${i.qty} = Rp ${(i.qty*i.price).toLocaleString("id-ID")}%0A`;
+        });
+        msg+=`-----------------%0ATOTAL: ${cartTotal.textContent}`;
+        window.open(`https://wa.me/6285921621756?text=${msg}`,"_blank");
+    }
+});
