@@ -177,4 +177,5 @@ body{
 .site-footer{
     text-align:center;
     color:var(--muted);
-    padding
+    padding:20px 0;
+}
