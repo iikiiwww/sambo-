@@ -2,10 +2,8 @@
 // DATA PRODUK FINAL (SESUSAI LIST)
 // =======================
 const PRODUCTS = [
-    // PRODUK UTAMA
     { id: 1, name: "FROZEN KRAMPUS", price: 103568 },
     { id: 2, name: "JETSKI FROZEN", price: 56568 },
-
     { id: 3, name: "VIP", price: 48398 },
     { id: 4, name: "MUTATION", price: 34090 },
     { id: 5, name: "ADV LUCK", price: 58590 },
@@ -16,7 +14,6 @@ const PRODUCTS = [
     { id: 10, name: "SMALL LUCK", price: 8100 },
     { id: 11, name: "HYPER BOAT", price: 110898 },
 
-    // CRATE
     { id: 12, name: "LUXURY CRATE", price: 12098 },
     { id: 13, name: "MEMESONA CRATE", price: 12098 },
     { id: 14, name: "LAUTAN CRATE", price: 10078 },
@@ -24,9 +21,6 @@ const PRODUCTS = [
     { id: 16, name: "CHRISTMAS CRATE", price: 28098 },
 ];
 
-// =======================
-// RENDER PRODUK UTAMA
-// =======================
 const grid = document.getElementById("product-grid");
 grid.innerHTML = PRODUCTS.slice(0, 11).map(p => `
     <div class="card">
@@ -38,9 +32,6 @@ grid.innerHTML = PRODUCTS.slice(0, 11).map(p => `
     </div>
 `).join("");
 
-// =======================
-// RENDER CRATE
-// =======================
 document.querySelectorAll(".crate-card").forEach((c, i) => {
     const crate = PRODUCTS[11 + i];
     if (!crate) return;
@@ -52,18 +43,13 @@ document.querySelectorAll(".crate-card").forEach((c, i) => {
     `;
 });
 
-// =======================
-// CART SYSTEM
-// =======================
 let cart = {};
-
 const cartModal = document.getElementById("cart-modal");
 const cartItems = document.getElementById("cart-items");
 const cartTotalEl = document.getElementById("cart-total");
 
 function updateCartUI() {
     let total = 0;
-
     cartItems.innerHTML = Object.values(cart).map(item => {
         total += item.price * item.qty;
         return `
@@ -79,16 +65,10 @@ function updateCartUI() {
             </div>
         `;
     }).join("");
-
     cartTotalEl.textContent = "Rp " + total.toLocaleString("id-ID");
 }
 
-// =======================
-// EVENT LISTENER
-// =======================
 document.body.addEventListener("click", e => {
-
-    // TAMBAH KE CART
     if (e.target.classList.contains("btn-add")) {
         const id = Number(e.target.dataset.id);
         const p = PRODUCTS.find(x => x.id === id);
@@ -97,15 +77,9 @@ document.body.addEventListener("click", e => {
         updateCartUI();
     }
 
-    // BUKA / TUTUP CART
-    if (e.target.id === "open-cart") {
-        cartModal.setAttribute("aria-hidden", "false");
-    }
-    if (e.target.id === "close-cart") {
-        cartModal.setAttribute("aria-hidden", "true");
-    }
+    if (e.target.id === "open-cart") cartModal.setAttribute("aria-hidden", "false");
+    if (e.target.id === "close-cart") cartModal.setAttribute("aria-hidden", "true");
 
-    // QTY CONTROL
     const op = e.target.dataset.op;
     if (op) {
         const id = Number(e.target.dataset.id);
@@ -117,7 +91,6 @@ document.body.addEventListener("click", e => {
         updateCartUI();
     }
 
-    // CHECKOUT WA
     if (e.target.id === "checkout") {
         if (Object.keys(cart).length === 0) {
             alert("Keranjang kosong!");
