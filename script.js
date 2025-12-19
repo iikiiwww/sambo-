@@ -1,6 +1,3 @@
-// =======================
-// DATA PRODUK FINAL (SESUSAI LIST)
-// =======================
 const PRODUCTS = [
     { id: 1, name: "FROZEN KRAMPUS", price: 103568 },
     { id: 2, name: "JETSKI FROZEN", price: 56568 },
@@ -22,7 +19,7 @@ const PRODUCTS = [
 ];
 
 const grid = document.getElementById("product-grid");
-grid.innerHTML = PRODUCTS.slice(0, 11).map(p => `
+grid.innerHTML = PRODUCTS.slice(0,11).map(p => `
     <div class="card">
         <div class="prod-title">
             <span>${p.name}</span>
@@ -32,14 +29,13 @@ grid.innerHTML = PRODUCTS.slice(0, 11).map(p => `
     </div>
 `).join("");
 
-document.querySelectorAll(".crate-card").forEach((c, i) => {
-    const crate = PRODUCTS[11 + i];
-    if (!crate) return;
-
+document.querySelectorAll(".crate-card").forEach((c,i)=>{
+    const crate = PRODUCTS[11+i];
+    if(!crate) return;
     c.innerHTML = `
         <strong>${crate.name}</strong>
         <span>Rp ${crate.price.toLocaleString("id-ID")}</span>
-        <button class="btn-add crate-btn" data-id="${crate.id}">Tambah</button>
+        <button class="btn-add" data-id="${crate.id}">Tambah</button>
     `;
 });
 
@@ -48,9 +44,9 @@ const cartModal = document.getElementById("cart-modal");
 const cartItems = document.getElementById("cart-items");
 const cartTotalEl = document.getElementById("cart-total");
 
-function updateCartUI() {
+function updateCartUI(){
     let total = 0;
-    cartItems.innerHTML = Object.values(cart).map(item => {
+    cartItems.innerHTML = Object.values(cart).map(item=>{
         total += item.price * item.qty;
         return `
             <div class="cart-item">
@@ -68,43 +64,47 @@ function updateCartUI() {
     cartTotalEl.textContent = "Rp " + total.toLocaleString("id-ID");
 }
 
-document.body.addEventListener("click", e => {
-    if (e.target.classList.contains("btn-add")) {
+document.body.addEventListener("click",e=>{
+    if(e.target.classList.contains("btn-add")){
         const id = Number(e.target.dataset.id);
-        const p = PRODUCTS.find(x => x.id === id);
-        if (!cart[id]) cart[id] = { ...p, qty: 0 };
+        const p = PRODUCTS.find(x=>x.id===id);
+        if(!cart[id]) cart[id] = {...p, qty:0};
         cart[id].qty++;
         updateCartUI();
     }
 
-    if (e.target.id === "open-cart") cartModal.setAttribute("aria-hidden", "false");
-    if (e.target.id === "close-cart") cartModal.setAttribute("aria-hidden", "true");
+    if(e.target.id==="open-cart"){
+        cartModal.setAttribute("aria-hidden","false");
+    }
+    if(e.target.id==="close-cart"){
+        cartModal.setAttribute("aria-hidden","true");
+    }
 
     const op = e.target.dataset.op;
-    if (op) {
+    if(op){
         const id = Number(e.target.dataset.id);
-        if (op === "inc") cart[id].qty++;
-        if (op === "dec") {
+        if(op==="inc") cart[id].qty++;
+        if(op==="dec"){
             cart[id].qty--;
-            if (cart[id].qty <= 0) delete cart[id];
+            if(cart[id].qty<=0) delete cart[id];
         }
         updateCartUI();
     }
 
-    if (e.target.id === "checkout") {
-        if (Object.keys(cart).length === 0) {
+    if(e.target.id==="checkout"){
+        if(Object.keys(cart).length===0){
             alert("Keranjang kosong!");
             return;
         }
 
         let msg = "PESANAN BARU%0A-----------------%0A";
-        Object.values(cart).forEach(i => {
-            msg += `${i.name} x${i.qty} = Rp ${(i.qty * i.price).toLocaleString("id-ID")}%0A`;
+        Object.values(cart).forEach(i=>{
+            msg += `${i.name} x${i.qty} = Rp ${(i.qty*i.price).toLocaleString("id-ID")}%0A`;
         });
         msg += "-----------------%0A";
         msg += `TOTAL: ${cartTotalEl.textContent}%0A`;
         msg += "Order via WA: 085921621756";
 
-        window.open(`https://wa.me/6285921621756?text=${msg}`, "_blank");
+        window.open(`https://wa.me/6285921621756?text=${msg}`,"_blank");
     }
 });
