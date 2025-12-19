@@ -1,62 +1,87 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>SAMBO STORE JAYA</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAMBO STORE JAYA</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <header class="header">
-  <div class="brand">
-    <div class="logo">🎣</div>
-    <div class="brand-text">
-      <h1>SAMBO STORE JAYA</h1>
-      <span>Top Up Game Terpercaya</span>
-    </div>
-  </div>
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="logo">🎣</div>
+            <div class="brand-text">
+                <h1>SAMBO STORE JAYA</h1>
+                <span>Fish It Roblox • Trusted Seller</span>
+            </div>
+        </div>
 
-  <button id="open-cart">🛒 <span id="cart-count">0</span></button>
+        <div class="header-actions">
+            <a class="wa-btn" href="https://wa.me/6285921621756" target="_blank">
+                💬 WhatsApp
+            </a>
+            <button id="open-cart" class="cart-btn">
+                🛒 Keranjang
+            </button>
+        </div>
+    </div>
 </header>
 
 <section class="hero">
-  <h2>TOP UP GAME CEPAT & AMAN</h2>
-  <p>Fish It Roblox • Crate • Item Premium</p>
+    <div class="container">
+        <h2>TOP UP FISH IT ROBLOX</h2>
+        <p>⚡ Proses Cepat • 💯 Aman • ⭐ Harga Bersahabat</p>
+    </div>
 </section>
 
-<section class="products">
-  <div class="card" data-name="THE VANQUISHER" data-price="92000">
-    <h3>THE VANQUISHER</h3>
-    <p>Rp 92.000</p>
-    <button class="buy">Tambah</button>
-  </div>
+<main class="container">
 
-  <div class="card" data-name="FROZEN KRAMPUS" data-price="103568">
-    <h3>FROZEN KRAMPUS</h3>
-    <p>Rp 103.568</p>
-    <button class="buy">Tambah</button>
-  </div>
+    <section id="produk">
+        <h3 class="section-title">🔥 PRODUK POPULER</h3>
+        <div id="product-grid" class="grid"></div>
+    </section>
 
-  <div class="card" data-name="JETSKI FROZEN" data-price="56568">
-    <h3>JETSKI FROZEN</h3>
-    <p>Rp 56.568</p>
-    <button class="buy">Tambah</button>
-  </div>
-</section>
+    <section id="crate">
+        <h3 class="section-title">🎁 CRATE SPECIAL</h3>
+        <div class="crate-grid">
+            <div class="crate-card"></div>
+            <div class="crate-card"></div>
+            <div class="crate-card"></div>
+            <div class="crate-card"></div>
+            <div class="crate-card"></div>
+        </div>
+    </section>
 
-<footer class="footer">
-  <p>📞 Order WhatsApp: <b>0859-2162-1756</b></p>
-  <span>© 2025 SAMBO STORE JAYA</span>
-</footer>
+    <div class="trust">
+        <div>✅ Fast Response</div>
+        <div>✅ Trusted Seller</div>
+        <div>✅ Banyak Testimoni</div>
+    </div>
 
-<div class="cart" id="cart">
-  <h3>Keranjang</h3>
-  <ul id="cart-items"></ul>
-  <p>Total: Rp <span id="total">0</span></p>
-  <button id="checkout">Checkout WA</button>
+</main>
+
+<!-- CART -->
+<div id="cart-modal" class="cart-modal" aria-hidden="true">
+    <div class="cart-panel">
+        <header class="cart-header">
+            <h4>Keranjang Belanja</h4>
+            <button id="close-cart">✖</button>
+        </header>
+
+        <div id="cart-items" class="cart-items"></div>
+
+        <footer class="cart-footer">
+            <strong>Total: <span id="cart-total">Rp 0</span></strong>
+            <button id="checkout" class="checkout-btn">Checkout WhatsApp</button>
+        </footer>
+    </div>
 </div>
+
+<footer class="site-footer">
+    © 2025 SAMBO STORE JAYA • Fish It Roblox
+</footer>
 
 <script src="script.js"></script>
 </body>
