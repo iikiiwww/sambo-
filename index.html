@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAMBO STORE JAYA</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>SAMBO STORE JAYA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
-<header class="navbar">
-  <div class="container nav-inner">
-    <div class="brand">
-      <div class="logo">🎣</div>
-      <div>
-        <h1>SAMBO STORE JAYA</h1>
-        <span>Top Up Fish It Roblox</span>
-      </div>
+<header class="header">
+  <div class="brand">
+    <div class="logo">🎣</div>
+    <div class="brand-text">
+      <h1>SAMBO STORE JAYA</h1>
+      <span>Top Up Game Terpercaya</span>
     </div>
-    <button id="open-cart" class="cart-btn">🛒 Keranjang</button>
   </div>
+
+  <button id="open-cart">🛒 <span id="cart-count">0</span></button>
 </header>
 
 <section class="hero">
-  <div class="hero-content">
-    <h2>TOP UP FISH IT ROBLOX</h2>
-    <p>⚡ Proses Cepat • 💎 Aman • 🔥 Harga Murah</p>
-    <a href="https://wa.me/6285921621756" target="_blank" class="hero-btn">
-      ORDER VIA WHATSAPP
-    </a>
+  <h2>TOP UP GAME CEPAT & AMAN</h2>
+  <p>Fish It Roblox • Crate • Item Premium</p>
+</section>
+
+<section class="products">
+  <div class="card" data-name="THE VANQUISHER" data-price="92000">
+    <h3>THE VANQUISHER</h3>
+    <p>Rp 92.000</p>
+    <button class="buy">Tambah</button>
+  </div>
+
+  <div class="card" data-name="FROZEN KRAMPUS" data-price="103568">
+    <h3>FROZEN KRAMPUS</h3>
+    <p>Rp 103.568</p>
+    <button class="buy">Tambah</button>
+  </div>
+
+  <div class="card" data-name="JETSKI FROZEN" data-price="56568">
+    <h3>JETSKI FROZEN</h3>
+    <p>Rp 56.568</p>
+    <button class="buy">Tambah</button>
   </div>
 </section>
 
-<main class="container">
-
-  <h3 class="section-title">🔥 PRODUK TERSEDIA</h3>
-  <div id="product-grid" class="grid"></div>
-
-  <h3 class="section-title">🎁 CRATE SPESIAL</h3>
-  <div class="crate-grid">
-    <div class="crate-card"></div>
-    <div class="crate-card"></div>
-    <div class="crate-card"></div>
-    <div class="crate-card"></div>
-    <div class="crate-card"></div>
-  </div>
-
-</main>
-
-<!-- CART -->
-<div id="cart-modal" class="cart-modal" aria-hidden="true">
-  <div class="cart-panel">
-    <div class="cart-head">
-      <h4>Keranjang</h4>
-      <button id="close-cart">✖</button>
-    </div>
-    <div id="cart-items" class="cart-items"></div>
-    <div class="cart-footer">
-      <div id="cart-total">Rp 0</div>
-      <button id="checkout" class="checkout-btn">Checkout WA</button>
-    </div>
-  </div>
-</div>
-
 <footer class="footer">
-  © SAMBO STORE JAYA • Trusted Roblox Store
+  <p>📞 Order WhatsApp: <b>0859-2162-1756</b></p>
+  <span>© 2025 SAMBO STORE JAYA</span>
 </footer>
+
+<div class="cart" id="cart">
+  <h3>Keranjang</h3>
+  <ul id="cart-items"></ul>
+  <p>Total: Rp <span id="total">0</span></p>
+  <button id="checkout">Checkout WA</button>
+</div>
 
 <script src="script.js"></script>
 </body>
