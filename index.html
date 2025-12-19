@@ -1,86 +1,97 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMBO STORE JAYA</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAMBO STORE JAYA</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- BACKGROUND EFFECT -->
+<div class="bg-glow"></div>
+
 <header class="header">
-    <div class="header-inner container">
+  <div class="header-inner container">
 
-        <div class="brand">
-            <div class="logo glow">🎣</div>
-            <div>
-                <h1>SAMBO STORE JAYA</h1>
-                <p class="sub">
-                    Fish It Roblox | Order :
-                    <a class="wa-link" href="https://wa.me/6285921621756" target="_blank">
-                        085921621756
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <nav class="nav">
-            <a href="#produk">Produk</a>
-            <a href="#crate">Crate</a>
-            <button id="open-cart" class="btn btn-glow">🛒 Keranjang</button>
-        </nav>
-
+    <div class="brand">
+      <div class="logo glow">🎣</div>
+      <div>
+        <h1>SAMBO STORE JAYA</h1>
+        <p class="sub">
+          Fish It Roblox | Order :
+          <a class="wa-link" href="https://wa.me/6285921621756" target="_blank">
+            085921621756
+          </a>
+        </p>
+      </div>
     </div>
+
+    <nav class="nav">
+      <a href="#produk">Produk</a>
+      <a href="#crate">Crate</a>
+      <button id="open-cart" class="btn btn-glow">
+        🛒 Keranjang <span id="cart-count">0</span>
+      </button>
+    </nav>
+
+  </div>
 </header>
 
 <main class="container">
 
-    <section class="hero">
-        <h2>Top Up Fish It Roblox</h2>
-        <p>Harga murah • Proses cepat • Aman & Terpercaya</p>
-    </section>
+<section class="hero">
+  <h2>Top Up Fish It Roblox</h2>
+  <p>⚡ Proses Cepat • 🔒 Aman • 💎 Harga Terbaik</p>
+  <div class="hero-badges">
+    <span>🔥 TERPERCAYA</span>
+    <span>⚡ FAST ORDER</span>
+    <span>💎 PREMIUM</span>
+  </div>
+</section>
 
-    <section id="produk">
-        <h3 class="section-title">Produk</h3>
-        <div id="product-grid" class="grid"></div>
-    </section>
+<section id="produk">
+  <h3 class="section-title">🔥 Produk Unggulan</h3>
+  <div id="product-grid" class="grid"></div>
+</section>
 
-    <section id="crate" class="crates">
-        <h3 class="section-title">CRATE</h3>
-        <div class="crate-grid">
-            <div class="crate-card"></div>
-            <div class="crate-card"></div>
-            <div class="crate-card"></div>
-            <div class="crate-card"></div>
-            <div class="crate-card"></div>
-        </div>
-    </section>
+<section id="crate" class="crates">
+  <h3 class="section-title">🎁 CRATE</h3>
+  <div class="crate-grid">
+    <div class="crate-card"></div>
+    <div class="crate-card"></div>
+    <div class="crate-card"></div>
+    <div class="crate-card"></div>
+    <div class="crate-card"></div>
+  </div>
+</section>
 
-    <p class="notes">
-        Semua harga final. Order via WhatsApp
-        <a href="https://wa.me/6285921621756" target="_blank">085921621756</a>
-    </p>
+<p class="notes">
+  Order otomatis & aman via WhatsApp  
+  <a href="https://wa.me/6285921621756" target="_blank">085921621756</a>
+</p>
+
 </main>
 
 <!-- CART -->
 <div id="cart-modal" class="cart-modal" aria-hidden="true">
-    <div class="cart-panel">
-        <header class="cart-header">
-            <h4>Keranjang Anda</h4>
-            <button id="close-cart" class="btn small">Tutup</button>
-        </header>
+  <div class="cart-panel">
+    <header class="cart-header">
+      <h4>🛒 Keranjang Anda</h4>
+      <button id="close-cart" class="btn small">Tutup</button>
+    </header>
 
-        <div id="cart-items" class="cart-items"></div>
+    <div id="cart-items" class="cart-items"></div>
 
-        <footer class="cart-footer">
-            <div class="total">Total: <strong id="cart-total">Rp 0</strong></div>
-            <button id="checkout" class="btn btn-glow">Checkout</button>
-        </footer>
-    </div>
+    <footer class="cart-footer">
+      <div class="total">Total: <strong id="cart-total">Rp 0</strong></div>
+      <button id="checkout" class="btn btn-glow">Checkout WA</button>
+    </footer>
+  </div>
 </div>
 
 <footer class="site-footer">
-    © SAMBO STORE JAYA — Fish It Roblox
+  © SAMBO STORE JAYA — Fish It Roblox
 </footer>
 
 <script src="script.js"></script>
